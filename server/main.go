@@ -97,7 +97,7 @@ func main(){
 
 
 	router := gin.Default()
-//      v1 := router.Group("/api/v1")
+////      v1 := router.Group("/api/v1")
 //    {
 //      v1.GET("list", getList)
 //       v1.POST("list", addtask)
@@ -108,7 +108,7 @@ func main(){
       router.GET("list", getList)
       router.POST("list", addtask)
       router.PUT("list/:id", updatetask)
-      router.DELETE("list/:id", deletetask)
+      //router.DELETE("list/:id", deletetask)
 router.Run("localhost:4000")
 
 }
