@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: ToDoList
+  description: To-Do list
+
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/ZEINAAHMED927/ToDo/1.0.0
+paths:
+  /list/{id}:
+    get:
+      tags:
+      - tasks
+      summary: get the To-Do list
+      operationId: getList
+      parameters:
+      - in: path
+        name: id
+        description: read the list
+        required: true
+        schema:
+          type: string
+      responses:
+        405:
+          description: Invalid input
+          
+    post:
+      tags:
+      - tasks
+      summary: add to the To-Do list
+      operationId: addtask
+      parameters:
+      - in: path
+        name: id
+        description: read the list
+        required: true
+        schema:
+          type: string
+      responses:
+        405:
+          description: Invalid input
+        201:
+          description: Updated successfully 
+  
+    put:
+      tags:
+      - tasks
+      summary: Update an existing task
+      operationId: updatetask
+      parameters:
+      - in: path
+        name: id
+        description: task that needs to be added to the list
+        required: true
+        schema:
+          type: string
+      responses:
+        400:
+          description: Invalid ID supplied
+        404:
+          description: task not found
+        405:
+          description: Validation exception
+          
+    delete:
+      tags:
+      - tasks
+      summary: Deletes a task
+      operationId: deletetask
+      parameters:
+      - in: path
+        name: id
+        description: delete a task from the list
+        required: true
+        schema:
+          type: string
+      responses:
+        400:
+          description: Invalid ID supplied
+        404:
+          description: task not found
+  
+      
