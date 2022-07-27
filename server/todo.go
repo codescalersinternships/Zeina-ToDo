@@ -36,7 +36,7 @@ func GetTasks() ([]Todo, error) {
 			
 				for rows.Next() {
 					singletask := Todo{}
-				err = rows.Scan(&singletask.ID, &singletask.Title, &singletask.Done, &singletask.Body)
+				 err = rows.Scan(&singletask.ID, &singletask.Title, &singletask.Done, &singletask.Body)
 			
 					if err != nil {
 						return nil, err
@@ -79,31 +79,7 @@ func Addtask(newtask Todo) (bool, error) {
 			
 				return true, nil
 			}
-			func Updatetask(newtask Todo, id int) (bool, error) {
-
-				tx, err := DB.Begin()
-				if err != nil {
-					return false, err
-				}
 			
-				stmt, err := tx.Prepare("UPDATE people SET title = ? done = ? body = ?  WHERE id = ?")
-			
-				if err != nil {
-					return false, err
-				}
-			
-				defer stmt.Close()
-			
-				_, err = stmt.Exec(newtask.Title, newtask.Done, newtask.Body, newtask.ID)
-			
-				if err != nil {
-					return false, err
-				}
-			
-				tx.Commit()
-			
-				return true, nil
-			}
 			
 			
 func Deletetask(taskid int) (bool, error) {

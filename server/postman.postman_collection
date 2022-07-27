@@ -52,36 +52,7 @@
 					]
 				}
 			},
-			"response": []
-		},
-		{
-			"name": "PUT",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"done\":false\r\n\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:4000/api/v1/list/2",
-					"host": [
-						"localhost"
-					],
-					"port": "4000",
-					"path": [
-						"api",
-						"v1",
-						"list",
-						"2"
-					]
-				}
-			},
+		
 			"response": []
 		},
 		{
