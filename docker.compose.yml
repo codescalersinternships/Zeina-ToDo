@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  app:
+    image: be
+    container_name: app
+    build: ./server
+    ports: 
+      - '4000:4000'
+    restart: on-failure
+  frontend: 
+    build: ./todoapp
+    image: frontend
+    ports: 
+      - "5656:5656"
+    depends_on: 
+      - app

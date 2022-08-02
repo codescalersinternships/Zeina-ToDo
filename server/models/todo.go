@@ -6,7 +6,7 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-type database struct {
+type Database struct {
 	db *sql.DB
     
 }
@@ -16,9 +16,10 @@ type database struct {
 // //	db,_:=ConnectDatabase(d)
 // 	return d
 // }
-func  NewDatabase() *database{
+
+func NewDatabase() *Database{
 	
-	d := &database{}
+	d := &Database{}
     db,_:=ConnectDatabase(d)
 	return db
 }
@@ -31,7 +32,7 @@ func  NewDatabase() *database{
 // }
 
 // var DB *sql.DB
-func ConnectDatabase(database *database)  (*database,error) {
+func ConnectDatabase(database *Database)  (*Database,error) {
 	db, err := sql.Open("sqlite3", "./todo.db")
 	if err != nil {
 		    err= err
@@ -45,7 +46,7 @@ type Todo struct{
 	Done bool `json:"done"`
 	}
 
-func (d *database) GetTasks() ([]Todo, error) {
+func (d *Database) GetTasks() ([]Todo, error) {
 
 				rows, err := d.db.Query("SELECT id,title,done from tasks" )
 			
@@ -77,7 +78,7 @@ func (d *database) GetTasks() ([]Todo, error) {
 				return tasks, err
 			}
 
-func (d *database)  Addtask(newtask Todo) (bool, error) {
+func (d *Database)  Addtask(newtask Todo) (bool, error) {
 
 				tx, err := d.db.Begin()
 				if err != nil {
@@ -105,7 +106,7 @@ func (d *database)  Addtask(newtask Todo) (bool, error) {
 			
 			
 			
-func(d *database)  Deletetask(taskid int) (bool, error) {
+func(d *Database)  Deletetask(taskid int) (bool, error) {
 
 				tx, err := d.db.Begin()
 			
@@ -133,7 +134,7 @@ func(d *database)  Deletetask(taskid int) (bool, error) {
 			}
 
 
-func (d *database) Updatetask(task Todo, taskId int) (bool, error) {
+func (d *Database) Updatetask(task Todo, taskId int) (bool, error) {
 
 				tx, err := d.db.Begin()
 				if err != nil {

@@ -1,41 +1,43 @@
 package main
 
 import (
-	
 	"bytes"
 	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 
-	
 	"testing"
 
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/assert"
+	"github.com/zeinaelkassas/todolist/models"
 )
 func SetUpRouter() *gin.Engine{
     router := gin.Default()
-    return router
+    return router 
 }
 func TestGetList(t *testing.T) {
-	ConnectDatabase()
-    r:= SetUpRouter()
 
-    r.GET("/v1/list",getList)
+    r:= SetUpRouter()
+    App := app{}
+
+    r.GET("/v1/list",App.getList)
     req, _ := http.NewRequest("GET", "/v1/list", nil)
     w := httptest.NewRecorder()
     r.ServeHTTP(w, req)
     assert.Equal(t, http.StatusOK, w.Code)
-   assert.NotEmpty(t, DB)
+   //assert.NotEmpty(t, DB)
 }
 func TestAddtask(t *testing.T) {
-	ConnectDatabase()
+	// ConnectDatabase()
     r := SetUpRouter()
-    r.POST("/v1/list", addtask)
-    task := Todo{
+    App := app{}
+
+    r.POST("/v1/list", App.addtask)
+    task := models.Todo{
 		Title: "task4",
 		Done: true,
-		Body: "taskk2",
+
 
 	}
    jsonValue, _ := json.Marshal(task)
@@ -43,6 +45,6 @@ func TestAddtask(t *testing.T) {
 
     w := httptest.NewRecorder()
     r.ServeHTTP(w, req)
-    assert.Equal(t, http.StatusOK, w.Code)
+    assert.Equal(t, http.StatusCreated, w.Code)
 }
 
