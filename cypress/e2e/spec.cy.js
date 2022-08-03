@@ -22,19 +22,8 @@ describe('The homepage', () => {
 
 
 })
-
-// it('check todo', () => {
-//   cy.get('#delete1').click()
-//   // cy.get('#toggle-all').
-//   // cy.get('input').type('{enter}')
-//   // cy.contains("task23456")
-
-
-// })
 it('delete todo', () => {
   cy.get('#delete1').click()
-  // cy.get('#toggle-all').
-  // cy.get('input').type('{enter}')
   // cy.contains("task23456")
 
 
