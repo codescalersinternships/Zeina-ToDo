@@ -213,7 +213,7 @@ onMount(()=>{
     }
   
     .remove {
-      display: none;
+      display: block;
       margin-left: auto;
       font-size: var(--font-32);
       color: var(--color-gray-58);
