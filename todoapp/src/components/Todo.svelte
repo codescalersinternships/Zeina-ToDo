@@ -128,7 +128,7 @@ onMount(()=>{
         aria-label="Remove todo"
         on:click={() => deleteTodo(todo)}
         on:click={() => removeTodo(todo.id)}
-
+        id="delete{todo.id}"
         class="remove"
       />
     </div>

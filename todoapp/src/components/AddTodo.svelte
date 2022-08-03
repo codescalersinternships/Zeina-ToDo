@@ -41,7 +41,7 @@ const getTodos = async () => {
 onMount(()=>{
     getTodos()
 })
-let createTitle;
+$: createTitle="";
 let createid;
 
 

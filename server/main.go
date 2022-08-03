@@ -126,7 +126,6 @@ func main(){
 		AllowHeaders:  []string{"content-type"},
 		ExposeHeaders: []string{"X-Total-Count"},
 	  }))
-
       v1 := router.Group("/api/v1")
    {
 	
@@ -134,8 +133,7 @@ func main(){
       v1.POST("list", App.addtask)
       v1.DELETE("list/:id", App.deletetask)
 	  v1.PUT("list/:id", App.updatetask)
-	  v1.PATCH("list/:id", App.updatetask)
-
+       v1.Static("/swaggerui/", "swagger_ui")
      }
     //   router.GET("list", getList)
     //   router.POST("list", addtask)
