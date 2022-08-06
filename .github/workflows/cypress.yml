@@ -1,0 +1,23 @@
+name: included
+on: [push]
+jobs:
+
+ 
+  run_cypress:
+    runs-on: ubuntu-20.04
+    steps:
+     - name: Set up QEMU
+       uses: docker/setup-qemu-action@v2
+      
+     - name: Set up Docker Buildx
+       uses: docker/setup-buildx-action@v2
+        
+     - name: Check out code 🛎
+       uses: actions/checkout@v2
+
+      # run utility services in the background
+      # using docker-compose (see docker-compose.yml file)
+     - name: Run docker-compose
+       working-directory: ./e2e  
+       run: | 
+         docker-compose up  --build --exit-code-from test
