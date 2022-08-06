@@ -11,7 +11,7 @@ jobs:
     
     - name: run cypress tests
       run: |
-        cd frontend
+        cd cypress
         npm i
         npx cypress run
         
