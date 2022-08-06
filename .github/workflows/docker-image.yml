@@ -29,7 +29,7 @@ jobs:
             context: .
             file: ./server/Dockerfile
             push: true
-            tegs: ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest
+            tags: ${{ secrets.DOCKER_HUB_USERNAME }}/todoapp:latest
      
             
 
