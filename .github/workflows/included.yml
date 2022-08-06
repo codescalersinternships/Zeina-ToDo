@@ -1,23 +1,18 @@
-name: included
-on: [push]
+name: Docker Compose 
+on: push
 jobs:
-  cypress-run:
+  test_cypress:
     runs-on: ubuntu-latest
-    # Docker image with Cypress pre-installed
-    # https://github.com/cypress-io/cypress-docker-images/tree/master/included
-    container: cypress/included:4.11.0
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v1
 
-      # normally we would NOT need to install NPM dependencies
-      # but in this repo we are using additional plugins listed in package.json
-      # thus we need to install them
-      - name: Install dependencies 📦
-        # we could simply run "npm ci" but that would not cache dependencies
-        # thus we can use this 3rd party action
-        uses: bahmutov/npm-install@v1
-
-      - name: Run tests 🧪
-        run: cypress run --record
-      
+    - uses: actions/checkout@v2
+    - name: Build the stack
+      run: docker-compose up -d
+    
+    - name: run cypress tests
+      run: 
+        cd cypress
+        npm i
+        npx cypress run
+        
+        
