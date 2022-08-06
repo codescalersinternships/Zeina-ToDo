@@ -1,17 +1,22 @@
-# syntax=docker/dockerfile:1
 
-FROM golang:latest
+FROM golang:latest as builder
+
 
 WORKDIR /app
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
+COPY . .
 
-COPY *.go ./
+RUN go build -o main -a -ldflags "-linkmode external -extldflags '-static' -s -w" .
 
-RUN go build -o /docker-gs-ping
 
+FROM alpine:3.15
+
+WORKDIR /app
+
+COPY --from=builder /app/main .
+RUN ls
 EXPOSE 4000
+# executable
+# arguments that can be overridden
+CMD [ "./main" ]
 
-CMD [ "/docker-gs-ping" ]
