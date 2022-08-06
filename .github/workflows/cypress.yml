@@ -18,6 +18,6 @@ jobs:
       # run utility services in the background
       # using docker-compose (see docker-compose.yml file)
      - name: Run docker-compose
-       working-directory: ./e2e  
+       working-directory: cypress/integration/e2e  
        run: | 
          docker-compose up  --build --exit-code-from test
